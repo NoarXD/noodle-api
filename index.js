@@ -2,8 +2,6 @@ const express = require('express');
 const BodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const PORT = process.env.PORT || 3000;
 require('dotenv').config();
 
