@@ -5,19 +5,14 @@ const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const PORT = process.env.PORT || 3000;
+require('dotenv').config();
 
 const app = express();
 
 app.use(BodyParser.json());
 app.use(cors());
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'root',
-    database: 'noodle'
-})  
+const db = mysql.createConnection(process.env.DATABASE_URL)  
 
 app.get('/products', (req, res) => {
     db.execute(
