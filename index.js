@@ -4,6 +4,7 @@ const cors = require('cors');
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -85,6 +86,6 @@ app.post('/login', (req, res) => {
     )
 })
 
-app.listen(3000, () => {
-    console.log("Server is running on http://localhost:3000")
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`)
 })
