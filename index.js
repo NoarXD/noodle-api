@@ -11,7 +11,13 @@ const app = express();
 app.use(BodyParser.json());
 app.use(cors());
 
-const db = mysql.createConnection(process.env.DATABASE_URL)  
+const db = mysql.createConnection(process.env.DATABASE_URL || {
+    host: 'aws.connect.psdb.cloud',
+    user: 'mm1idk6iapp76tqj0rkd',
+    password: 'pscale_pw_9FjEONjIRi9oO0p0r85soI4c9iQ7npBYDKpmPhS3zjL',
+    database: 'noodle'
+
+})  
 
 app.get('/products', (req, res) => {
     db.execute(
