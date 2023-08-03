@@ -20,7 +20,7 @@ const db = mysql.createConnection(process.env.DATABASE_URL || {
 })  
 
 app.get('/products', (req, res) => {
-    db.execute(
+    db.query(
         'SELECT * FROM products',
         (err, resulte) => {
             if (err) {
@@ -34,7 +34,7 @@ app.get('/products', (req, res) => {
 
 app.post('/add', (req, res) => {
     const {title, price, date} = req.body
-    db.execute(
+    db.query(
         'INSERT INTO products (title, price, date) VALUES (?,?,?)',
         [title, price, date],
         (err, result) => {
@@ -49,7 +49,7 @@ app.post('/add', (req, res) => {
 
 app.delete('/delete/:id', (req, res) => {
     const id = parseInt(req.params.id)
-    db.execute(
+    db.query(
         'DELETE FROM products WHERE id = ?',
         [id]
     )
@@ -59,7 +59,7 @@ app.delete('/delete/:id', (req, res) => {
 app.put('/update/:id', (req, res) => {
     const {title, price} = req.body
     const id = req.params.id
-    db.execute(
+    db.query(
         'UPDATE products SET title = ?, price = ? WHERE id = ?',
         [title, price, id]
     )
@@ -68,7 +68,7 @@ app.put('/update/:id', (req, res) => {
 
 app.post('/login', (req, res) => {
     const {username, password} = req.body
-    db.execute(
+    db.query(
         'SELECT * FROM users',
         (err, users) => {
             if (err) { res.json({ status: 'err', mag: err }); return }
